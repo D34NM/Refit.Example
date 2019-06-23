@@ -24,7 +24,7 @@ namespace Shows.Client
 
         public async Task<Show> SearchForShowAsync(string term, CancellationToken cancellationToken)
         {
-            return await _showSearchContract.GetAsync(term, cancellationToken);
+            return await _showSearchContract.GetAsync(new SearchRequestParams { SearchTerm = term }, cancellationToken);
         }
     }
 }

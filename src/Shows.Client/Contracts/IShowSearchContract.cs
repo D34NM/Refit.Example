@@ -8,6 +8,6 @@ namespace Shows.Client.Contracts
     public interface IShowSearchContract
     {
         [Get("/singlesearch/shows")]
-        Task<Show> GetAsync([AliasAs("q")] string searchTerm, CancellationToken cancellationToken);
+        Task<Show> GetAsync(SearchRequestParams requestParams, CancellationToken cancellationToken);
     }
 }
