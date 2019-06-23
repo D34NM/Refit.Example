@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Polly;
 using Refit;
 using Shows.Client.Contracts;
@@ -12,9 +13,10 @@ namespace Shows.Client.Extensions
         private const int TooManyRequests = 429;
         private const int HowManyTimes = 3;
 
-        public static IServiceCollection AddShowsClient(this IServiceCollection services)
+        public static IServiceCollection AddShowsClient(this IServiceCollection services, IConfiguration configuration)
         {
-            var baseUri = new Uri("http://api.tvmaze.com/");
+            var baseUri = new Uri(configuration["TvMazeApi:BaseUri"]);
+            Console.WriteLine(baseUri.ToString());
 
             var policy = Policy
                 .HandleResult(IfTooManyRequests())

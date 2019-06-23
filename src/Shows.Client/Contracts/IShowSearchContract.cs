@@ -7,7 +7,7 @@ namespace Shows.Client.Contracts
 {
     public interface IShowSearchContract
     {
-        [Get("/singlesearch/shows?q={term}")]
-        Task<Show> GetAsync(string term, CancellationToken cancellationToken);
+        [Get("/singlesearch/shows")]
+        Task<Show> GetAsync([AliasAs("q")] string searchTerm, CancellationToken cancellationToken);
     }
 }
